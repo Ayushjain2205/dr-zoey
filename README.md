@@ -1,108 +1,82 @@
-# **Zoey – Your AI Companion for Gamified Personal Growth 🌟**
+# 🩺 Dr.Zoey – Your AI Health Companion
 
-**Zoey** is an **AI-powered personal companion** that transforms self-improvement into an **engaging adventure**. With **gamified rewards, emotional support, and practical guidance**, Zoey helps users **level up in real life** while earning real value through **Web3-powered incentives**.
-
----
-
-## 🚀 **Features & Functionality**
-
-### 🎯 **Gamified Self-Improvement**
-
-- **Level Up Attributes** – Develop across five key attributes on a **0-100 scale**:
-  - 🧠 **Wisdom** – Knowledge and decision-making.
-  - ❤️ **Empathy** – Emotional intelligence and relationships.
-  - ⚡ **Energy** – Motivation and vitality.
-  - 🔥 **Discipline** – Focus and habit formation.
-  - 🎨 **Creativity** – Innovation and expression.
-- **Progressive Rewards** – Earn **$ZCOINS** by completing daily challenges, maintaining streaks, and achieving milestones.
-- **Unlock Special Abilities** – Improve focus, productivity, and emotional insight with in-game upgrades.
-
-### 💬 **Emotional Support & AI Assistance**
-
-- **Empathetic Conversations** – Zoey offers **mood-based responses** and emotional support.
-- **Personalized Motivation** – Get **custom reminders and encouragement** tailored to your goals.
-- **Memory System** – Zoey **remembers past interactions** and evolves over time, making it a **truly personal companion**.
-
-### 💡 **Practical Guidance & Task Management**
-
-- **Goal Setting & Tracking** – Set and track goals with **AI-powered recommendations**.
-- **Task Management** – Organize daily tasks and **boost productivity**.
-- **App Integrations** – Connect with **Google Calendar, Apple Health**, and more (coming soon).
+**Dr.Zoey** is a modular, agent-powered wellness companion that helps users optimize their health and well-being using AI, gamification, and Web3 rewards. Powered by GPT-4o and deployed on **Base Sepolia**, Zoey adapts to your lifestyle, offering real-time insights and emotional support through six specialized modes — all coordinated by a central memory engine.
 
 ---
 
-## 🌐 **Web3 Integration & Virtual Economy**
+## ✨ Features
 
-### 💎 **$ZCOINS – In-Game Currency**
-
-- **ERC-20 Token** on **Scroll Sepolia**:
-  - 🔗 [ZCOIN Contract](https://sepolia.scrollscan.com/address/0xb4F7D413cb03b582743A80fA7E4b77271d902ca0)
-- **Earn by Improving** – Gain $ZCOINS through self-improvement activities.
-- **Spend on Upgrades & Gifts** – Use tokens to **boost attributes, unlock abilities, and gift Zoey items**.
-- **Staking & Rewards** – Future plans include **staking for exclusive perks**.
-
-### 🎁 **In-Game Items as NFTs**
-
-- **ERC-721 NFTs** on **Scroll Sepolia**:
-  - 🔗 [In-Game Items Contract](https://sepolia.scrollscan.com/address/0x75cd42Bc93991e35f3767ecfF8ffD6640429e6A5)
-- **Ownable Digital Items** – Virtual gifts, collectibles, and **customization items** as NFTs.
-- **Boost Connection** – Gifting Zoey improves your bond, unlocking **exclusive interactions and content**.
-
-### 🔗 **Why Web3?**
-
-- **True Ownership** – On-chain achievements, items, and rewards **belong to the user**.
-- **Interoperability** – Your **progress and rewards** can carry over into **other Web3 experiences**.
-- **Decentralized Rewards** – Smart contracts ensure **transparent and fair incentives**.
-- **Community Governance** – $ZCOIN holders can **vote on future features** and reward structures.
+- 🎭 **Modular AI Personas** – Switch between 6 intelligent modes: Doctor, Fitness Coach, Nutritionist, Sleep Coach, Meditation Guide, and Therapist.
+- 🧠 **Core Memory Agent** – Central logic and context manager that personalizes insights across all modes.
+- 📊 **Smart Insight Dashboards** – Visual tools like Insight Maps, Timeline Heatmaps, and Radar Charts.
+- 🎮 **Gamified Health System** – Level up real-life health stats: Stamina, Clarity, Recovery, and Fuel.
+- 💰 **Web3 Rewards** – Earn $ZCOINS (ERC-20) for healthy actions and interact with Zoey using NFT gifts (ERC-721).
+- 🔗 **Deployed on Base Sepolia** – Tokens and NFTs are live on Base Sepolia testnet.
+- 🧾 **Smart Account Onboarding** – Seamless Web3 experience using Privy.
 
 ---
 
-## ⚙️ **Tech Stack**
+## 🧩 Multi-Agent System
 
-### 🛠️ **Frontend & UI**
+Dr.Zoey is built on a multi-agent architecture. Each mode is its own specialized GPT-4o-powered agent:
 
-- **React Native** – Cross-platform mobile app development.
-- **Gamified UI** – Interactive, game-like interface for **engaging experiences**.
+| Mode                     | Description                                                                |
+| ------------------------ | -------------------------------------------------------------------------- |
+| 🩺 **Doctor Mode**       | Tracks symptoms, manages medications, and alerts you to early risks.       |
+| 🏋️ **Fitness Coach**     | Builds workout plans and tracks your activity, stamina, and energy output. |
+| 🥗 **Nutritionist Mode** | Suggests meals, logs intake, and manages hydration & diet balance.         |
+| 😴 **Sleep Coach**       | Analyzes sleep patterns and helps optimize recovery and sleep quality.     |
+| 🧘 **Meditation Mode**   | Provides breathwork sessions and stress-relief techniques.                 |
+| 🧠 **Therapist Mode**    | Guides mood tracking, journaling, and emotional reflection.                |
 
-### 🤖 **AI Model**
-
-- **OpenAI GPT-4o** – Used for **agentic actions, contextual memory, and conversational responses**.
-- **Contextual Memory** – Tracks user interactions for **evolving, personalized conversations**.
-
-### 🔥 **Blockchain & Web3**
-
-- **ERC-20 ZCOIN Contract:** [0xb4F7D413cb03b582743A80fA7E4b77271d902ca0](https://sepolia.scrollscan.com/address/0xb4F7D413cb03b582743A80fA7E4b77271d902ca0)
-- **ERC-721 NFTs Contract:** [0x75cd42Bc93991e35f3767ecfF8ffD6640429e6A5](https://sepolia.scrollscan.com/address/0x75cd42Bc93991e35f3767ecfF8ffD6640429e6A5)
-- **Privy Smart Account Tooling** – For **secure, gasless transactions** and smooth Web3 interactions.
+All agents sync with a **Core Memory Agent** that handles long-term context and provides real-time, personalized insights.
 
 ---
 
-## 🌟 **Benefits of Using Zoey**
+## 🧬 Gamified Health Engine
 
-✅ **Gamified Personal Growth** – Make self-improvement engaging and fun.  
-✅ **Real Rewards for Real Progress** – Earn $ZCOINS with tangible value.  
-✅ **Emotional & Practical AI Support** – Get genuine emotional support and guidance.  
-✅ **On-Chain Memory & Personalization** – Your Zoey **evolves with you**.  
-✅ **Interoperable Digital Assets** – Carry your **progress across Web3** experiences.
+Track and improve 4 key health stats:
 
----
+- 🔥 **Stamina** – Measures physical activity and energy
+- 🧠 **Clarity** – Focus, alertness, and reduced mental fog
+- 😴 **Recovery** – Sleep depth and restfulness
+- 🥗 **Fuel** – Diet quality and hydration
 
-## 🔮 **Future Roadmap**
-
-🚀 **Expanded Integrations:** Apple Health, Google Fit, and more.  
-🎁 **Enhanced NFT Gifting:** Dynamic interactions with **Zoey’s emotions**.  
-🌐 **Cross-App Compatibility:** Use **Zoey NFTs & $ZCOINS** in other Web3 ecosystems.  
-🏛️ **DAO Governance:** $ZCOIN holders **vote on new features** and game mechanics.
+Perform healthy actions → Boost stats → Earn streaks → Get rewarded 🎉
 
 ---
 
-## 📚 **Get Started with Zoey**
+## 🔗 Blockchain Components
 
-1. **Download the App** – (Coming soon 🚀)
-2. **Create Your Smart Account** – Powered by **Privy** for seamless Web3 onboarding.
-3. **Start Leveling Up** – Complete challenges, earn **$ZCOINS**, and unlock special abilities.
-4. **Build Your Bond with Zoey** – Gift items, enhance interactions, and **unlock emotional depth**.
+Dr.Zoey leverages Web3 to make health actionable and rewarding:
+
+### ✅ **Token: `$ZCOINS`**
+
+- **Type**: ERC-20
+- **Network**: Base Sepolia
+- **Usage**: Earned through journaling, movement, mindfulness, etc. Spend on boosts, upgrades, gifts.
+
+### ✅ **NFT Gifts**
+
+- **Type**: ERC-721
+- **Examples**: Meditation Candle, Smart Water Bottle, Sleep Mask
+- **Usage**: Gift to Zoey to unlock reactions, emotions, and enhanced guidance.
 
 ---
 
-✅ **Zoey isn’t just an AI companion – it’s your partner in growth, powered by AI and Web3.** 🌟
+## 📈 Insight Visualizations
+
+Zoey transforms raw health data into meaningful, visual feedback:
+
+- 🧭 **Insight Map** – Shows cause-effect relationships between behavior and mood/sleep/energy.
+- 📊 **Timeline Heatmap** – Weekly trend analysis across all 4 stats.
+- 🕸 **Radar View** – Displays real-time health balance.
+
+---
+
+## 🚧 Roadmap
+
+- 🔌 **Integrate Apple Health, Fitbit, Oura, Garmin**
+- 🧠 **Enhance AI Memory with adaptive, long-term tracking**
+- 🗳 **Launch in-app DAO voting for new agent features**
+- 🧠 **Predictive Analytics for burnout, recovery, and illness detection**
