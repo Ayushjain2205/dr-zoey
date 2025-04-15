@@ -115,6 +115,27 @@ interface GuidedMeditation {
   isPlaying: boolean;
 }
 
+interface SleepAnalysis {
+  date: string;
+  totalSleep: {
+    hours: number;
+    minutes: number;
+  };
+  sleepStages: {
+    awake: number[];
+    rem: number[];
+    core: number[];
+    deep: number[];
+  };
+  timeMarkers: string[];
+  sleepScore: number;
+  insights: {
+    title: string;
+    value: string;
+    icon: FeatherIconName;
+  }[];
+}
+
 interface Message {
   id: string;
   text: string;
@@ -126,6 +147,7 @@ interface Message {
   medicationSchedule?: MedicationSchedule;
   nutritionLog?: NutritionLog;
   guidedMeditation?: GuidedMeditation;
+  sleepAnalysis?: SleepAnalysis;
   image?: string;
 }
 
@@ -138,6 +160,7 @@ interface SimulatedResponse {
   medicationSchedule?: MedicationSchedule;
   nutritionLog?: NutritionLog;
   guidedMeditation?: GuidedMeditation;
+  sleepAnalysis?: SleepAnalysis;
 }
 
 interface SimulatedFlow {
@@ -330,42 +353,54 @@ const mockFlows: Record<ChatMode, SimulatedFlow> = {
   SLEEP: {
     responses: [
       {
-        text: "I'll help you create a better sleep routine. First, let's look at your current schedule:",
+        text: "I'll analyze your sleep data from yesterday. Here's what I found:",
         delay: 1000,
       },
       {
-        text: "CALENDAR_VIEW",
-        daySchedule: {
-          date: new Date().toISOString(),
-          sleepTime: "23:00",
-          wakeTime: "07:00",
-          activities: [
+        text: "Here's your detailed sleep analysis:",
+        delay: 1500,
+        sleepAnalysis: {
+          date: "14 Apr 2025",
+          totalSleep: {
+            hours: 4,
+            minutes: 35,
+          },
+          sleepStages: {
+            awake: [0, 0, 0, 0.8, 0, 0, 0, 0.6, 0.9, 0.7, 0.3],
+            rem: [0, 0, 0, 0, 0, 0.9, 0, 0, 0, 0, 0],
+            core: [0.6, 0.8, 0.9, 0, 0, 0, 0, 0, 0, 0, 0],
+            deep: [0, 0.7, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          },
+          timeMarkers: ["8 AM", "10 AM", "12 PM", "2 PM"],
+          sleepScore: 65,
+          insights: [
             {
-              time: "22:00",
-              activity: "No screen time",
-              duration: 60,
+              title: "Sleep Continuity",
+              value: "Multiple interruptions detected during your sleep",
+              icon: "activity",
             },
             {
-              time: "22:30",
-              activity: "Reading/Meditation",
-              duration: 30,
+              title: "Deep Sleep",
+              value: "Only 45 minutes of deep sleep recorded",
+              icon: "moon",
             },
-          ],
-          meetings: [
             {
-              id: "1",
-              title: "Sleep Review",
-              startTime: "22:00",
-              endTime: "22:30",
-              isOnline: true,
-              participants: ["user", "sleep-coach"],
+              title: "Sleep Schedule",
+              value: "Irregular sleep pattern detected",
+              icon: "clock",
             },
           ],
         },
-        delay: 1500,
       },
       {
-        text: "This is a suggested schedule. How does this align with your current routine?",
+        text:
+          "Based on your sleep patterns, here are some recommendations to improve your sleep quality:\n\n" +
+          "1. 🌙 Try to maintain a consistent sleep schedule\n" +
+          "2. 📱 Avoid screen time 1 hour before bed\n" +
+          "3. 🏃‍♂️ Consider light exercise in the morning\n" +
+          "4. 🌡️ Keep your bedroom cool (around 65-68°F)\n" +
+          "5. ⏰ Aim to get to bed by 10:30 PM for optimal rest\n\n" +
+          "Would you like me to set up a bedtime reminder for you?",
         delay: 2000,
       },
     ],
@@ -764,6 +799,121 @@ const GuidedMeditationCard: React.FC<{
   );
 };
 
+const SleepAnalysisCard: React.FC<{
+  analysis: SleepAnalysis;
+  currentTheme: ThemeColors;
+}> = ({ analysis, currentTheme }) => {
+  const graphHeight = 200;
+  const graphWidth = 300;
+
+  const renderSleepStage = (data: number[], color: string, yOffset: number) => {
+    return data.map((height, index) => (
+      <StyledView
+        key={`${yOffset}-${index}`}
+        style={{
+          position: "absolute",
+          left: (index * graphWidth) / data.length,
+          bottom: yOffset * (graphHeight / 4),
+          width: graphWidth / data.length,
+          height: height * (graphHeight / 4),
+          backgroundColor: color,
+          opacity: 0.8,
+          borderRadius: 8,
+        }}
+      />
+    ));
+  };
+
+  return (
+    <StyledView className="bg-white border-2 border-black rounded-xl overflow-hidden">
+      <StyledView
+        className="px-3 py-2 border-b-2 border-black"
+        style={{ backgroundColor: currentTheme.main }}
+      >
+        <StyledText className="font-space text-base font-bold">
+          😴 Sleep Analysis - {analysis.date}
+        </StyledText>
+      </StyledView>
+
+      <StyledView className="p-4">
+        {/* Total Sleep Time */}
+        <StyledView className="items-center mb-6">
+          <StyledText className="font-space text-4xl font-bold">
+            {analysis.totalSleep.hours}hr {analysis.totalSleep.minutes}min
+          </StyledText>
+          <StyledText className="font-space text-sm text-gray-600 mt-1">
+            Total Sleep Time
+          </StyledText>
+        </StyledView>
+
+        {/* Sleep Graph */}
+        <StyledView className="mb-6">
+          <StyledView className="h-[200px] relative">
+            {/* Stage Labels */}
+            <StyledView className="absolute left-0 h-full w-16 justify-between">
+              {["Awake", "REM", "Core", "Deep"].map((label, i) => (
+                <StyledText
+                  key={label}
+                  className="font-space text-xs text-gray-600"
+                >
+                  {label}
+                </StyledText>
+              ))}
+            </StyledView>
+
+            {/* Graph Area */}
+            <StyledView className="ml-16 h-full relative border-l border-gray-200">
+              {/* Sleep Stages */}
+              {renderSleepStage(analysis.sleepStages.awake, "#FF6B6B", 3)}
+              {renderSleepStage(analysis.sleepStages.rem, "#4ECDC4", 2)}
+              {renderSleepStage(analysis.sleepStages.core, "#45B7D1", 1)}
+              {renderSleepStage(analysis.sleepStages.deep, "#2C3E50", 0)}
+
+              {/* Time Markers */}
+              <StyledView className="absolute bottom-0 w-full flex-row justify-between">
+                {analysis.timeMarkers.map((time, index) => (
+                  <StyledText
+                    key={index}
+                    className="font-space text-xs text-gray-600"
+                  >
+                    {time}
+                  </StyledText>
+                ))}
+              </StyledView>
+            </StyledView>
+          </StyledView>
+        </StyledView>
+
+        {/* Sleep Insights */}
+        <StyledView className="space-y-3">
+          {analysis.insights.map((insight, index) => (
+            <StyledView
+              key={index}
+              className="flex-row items-center p-3 border-2 border-black rounded-xl"
+              style={{ backgroundColor: currentTheme.lighter }}
+            >
+              <StyledView
+                className="w-8 h-8 items-center justify-center rounded-full mr-3"
+                style={{ backgroundColor: currentTheme.main }}
+              >
+                <Feather name={insight.icon} size={16} color="black" />
+              </StyledView>
+              <StyledView className="flex-1">
+                <StyledText className="font-space text-sm font-bold">
+                  {insight.title}
+                </StyledText>
+                <StyledText className="font-space text-xs text-gray-600">
+                  {insight.value}
+                </StyledText>
+              </StyledView>
+            </StyledView>
+          ))}
+        </StyledView>
+      </StyledView>
+    </StyledView>
+  );
+};
+
 export const ChatScreen = () => {
   const { selectedMode, setSelectedMode, currentTheme } = useTheme();
   const [messages, setMessages] = useState<Message[]>([
@@ -981,6 +1131,7 @@ export const ChatScreen = () => {
         medicationSchedule: response.medicationSchedule,
         nutritionLog: response.nutritionLog,
         guidedMeditation: response.guidedMeditation,
+        sleepAnalysis: response.sleepAnalysis,
       };
 
       setMessages((prev) => [...prev, zoeyResponse]);
@@ -1031,6 +1182,7 @@ export const ChatScreen = () => {
         medicationSchedule: response.medicationSchedule,
         nutritionLog: response.nutritionLog,
         guidedMeditation: response.guidedMeditation,
+        sleepAnalysis: response.sleepAnalysis,
       };
 
       setMessages((prev) => [...prev, zoeyResponse]);
@@ -1250,6 +1402,17 @@ export const ChatScreen = () => {
         <StyledView key={message.id} className="mb-4">
           <GuidedMeditationCard
             meditation={message.guidedMeditation}
+            currentTheme={currentTheme}
+          />
+        </StyledView>
+      );
+    }
+
+    if (!message.isUser && message.sleepAnalysis) {
+      return (
+        <StyledView key={message.id} className="mb-4">
+          <SleepAnalysisCard
+            analysis={message.sleepAnalysis}
             currentTheme={currentTheme}
           />
         </StyledView>
