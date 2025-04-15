@@ -76,7 +76,7 @@ export default function LoginScreen() {
           </StyledView>
         </StyledView>
 
-        <TypewriterText text="Hey! I am Zoey. Lets begin a fun adventure!" />
+        <TypewriterText text="Hey! I am Zoey. Lets begin a journey to a healthier you!" />
       </StyledView>
 
       {/* Login Button Container */}
